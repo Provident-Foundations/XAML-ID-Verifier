@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net11.0-windows</TargetFramework>
+    <RootNamespace>Provident.Xaml.Verify</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>True</UseWPF>
+    <AssemblyTitle>Provident Foundations XAML ID Verifier</AssemblyTitle>
+	  <ApplicationVisualStyles>true</ApplicationVisualStyles>
+	  <ApplicationUseCompatibleTextRendering>false</ApplicationUseCompatibleTextRendering>
+	  <ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+	  <ApplicationDefaultFont>Segoe UI, 9.75pt</ApplicationDefaultFont>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="App Icon Source 32 x 32.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Build.Locator" PrivateAssets="all" Version="1.11.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Provident Foundations Visual studio Windows Forms Controls Library\Provident Foundations Visual studio Windows Forms Controls Library.csproj" />
+    <ProjectReference Include="..\..\Provident Visual Studio Framework\Provident Visual Studio Framework.csproj" />
+    <ProjectReference Include="..\..\Provident-Foundations-Framework\src\Core\Provident Foundations Framework\Provident.Foundations\Provident.Foundations.csproj" />
+    <ProjectReference Include="..\..\Provident-Foundations-Framework\src\Windows\ui\Provident.Foundations.WinForms.Controls\Provident.Foundations.WinForms.Controls.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="App Icon Source 32 x 32.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Validator\" />
+  </ItemGroup>
+
+</Project>

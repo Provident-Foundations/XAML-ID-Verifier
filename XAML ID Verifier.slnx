@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="../../Provident Foundations Visual studio Windows Forms Controls Library/Provident Foundations Visual studio Windows Forms Controls Library.csproj" Id="ed0b1c6f-941b-4347-9115-7ce4d398b9d5" />
+  <Project Path="../../Provident Visual Studio Framework/Provident Visual Studio Framework.csproj" />
+  <Project Path="../../Provident-Foundations-Framework/src/Core/Provident Foundations Framework/Provident.Foundations/Provident.Foundations.csproj" />
+  <Project Path="../../Provident-Foundations-Framework/src/Windows/ui/Provident.Foundations.WinForms.Controls/Provident.Foundations.WinForms.Controls.csproj" />
+  <Project Path="XAML ID Verifier.csproj" />
+</Solution>
