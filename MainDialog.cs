@@ -162,6 +162,9 @@ public partial class MainDialog : ProvidentDialogBase
         BuldMenuValidateStyleId.Enabled = isOpen;
         BuildButton.Enabled = isOpen;
 
+        SolutionExplorer.Visible = isOpen;
+        SolutionExplorerSplitter.Visible = isOpen;
+        ErrorSplitter.Visible = ErrorList.Visible;
     }
     #endregion
 

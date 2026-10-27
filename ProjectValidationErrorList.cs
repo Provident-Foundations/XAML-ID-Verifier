@@ -68,31 +68,33 @@ public partial class ProjectValidationErrorList : ProvidentControlBase
             foreach (var entry in result.Log.Entries)
             {
                 DiagnosticSeverity severity = GetSeverity(entry.Level);
-                if (!IsSeverityVisible(severity))
+                if (severity != DiagnosticSeverity.Information)
                 {
-                    continue;
-                }
+                    if (!IsSeverityVisible(severity))
+                    {
+                        continue;
+                    }
 
-                string message = entry.Message ?? string.Empty;
-                if (entry.Exceptions.Count > 0)
-                {
-                    message += Environment.NewLine + string.Join(
-                        Environment.NewLine,
-                        entry.Exceptions.Select(exception => exception.Message)
+                    string message = entry.Message ?? string.Empty;
+                    if (entry.Exceptions.Count > 0)
+                    {
+                        message += Environment.NewLine + string.Join(
+                            Environment.NewLine,
+                            entry.Exceptions.Select(exception => exception.Message)
+                        );
+                    }
+
+                    AddRow(
+                        severity,
+                        "Validation",
+                        message,
+                        string.Empty,
+                        string.Empty,
+                        entry.LogDateTime.ToString("G")
                     );
+                    diagnosticCount++;
                 }
-
-                AddRow(
-                    severity,
-                    "Validation",
-                    message,
-                    string.Empty,
-                    string.Empty,
-                    entry.LogDateTime.ToString("G")
-                );
-                diagnosticCount++;
             }
-
 
             if (ShowFiles.Checked)
             {

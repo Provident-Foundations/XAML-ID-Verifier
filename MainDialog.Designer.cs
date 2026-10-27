@@ -41,6 +41,7 @@ namespace Provident.Xaml.Verify
             SolutionExplorer = new SolutionExplorer();
             SolutionExplorerSplitter = new Splitter();
             ErrorList = new ProjectValidationErrorList();
+            ErrorSplitter = new Splitter();
             MainMenu.SuspendLayout();
             MainToolbar.SuspendLayout();
             SuspendLayout();
@@ -224,9 +225,11 @@ namespace Provident.Xaml.Verify
             // 
             // SolutionExplorer
             // 
+            SolutionExplorer.BackColor = Color.FromArgb(28, 28, 28);
             SolutionExplorer.BorderStyle = BorderStyle.FixedSingle;
             SolutionExplorer.Dock = DockStyle.Right;
             SolutionExplorer.Font = new Font("Segoe UI", 9.75F);
+            SolutionExplorer.ForeColor = Color.White;
             SolutionExplorer.Location = new Point(512, 64);
             SolutionExplorer.Margin = new Padding(658, 141, 658, 141);
             SolutionExplorer.Name = "SolutionExplorer";
@@ -237,6 +240,7 @@ namespace Provident.Xaml.Verify
             // 
             // SolutionExplorerSplitter
             // 
+            SolutionExplorerSplitter.BackColor = Color.FromArgb(64, 0, 64);
             SolutionExplorerSplitter.Dock = DockStyle.Right;
             SolutionExplorerSplitter.Location = new Point(507, 64);
             SolutionExplorerSplitter.Name = "SolutionExplorerSplitter";
@@ -257,12 +261,23 @@ namespace Provident.Xaml.Verify
             ErrorList.Visible = false;
             ErrorList.VisualStylesMode = VisualStylesMode.Latest;
             // 
+            // ErrorSplitter
+            // 
+            ErrorSplitter.BackColor = Color.FromArgb(64, 0, 64);
+            ErrorSplitter.Dock = DockStyle.Bottom;
+            ErrorSplitter.Location = new Point(0, 256);
+            ErrorSplitter.Name = "ErrorSplitter";
+            ErrorSplitter.Size = new Size(507, 5);
+            ErrorSplitter.TabIndex = 14;
+            ErrorSplitter.TabStop = false;
+            // 
             // MainDialog
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(28, 28, 28);
             ClientSize = new Size(784, 561);
+            Controls.Add(ErrorSplitter);
             Controls.Add(ErrorList);
             Controls.Add(SolutionExplorerSplitter);
             Controls.Add(SolutionExplorer);
@@ -308,5 +323,6 @@ namespace Provident.Xaml.Verify
         private SolutionExplorer SolutionExplorer;
         private Splitter SolutionExplorerSplitter;
         private ProjectValidationErrorList ErrorList;
+        private Splitter ErrorSplitter;
     }
 }
