@@ -1,5 +1,7 @@
+using Microsoft.Extensions.Logging;
 using Provident.Foundations.VisualStudio.IO;
 using Provident.Foundations.VisualStudio.Model;
+using Provident.Foundations.VisualStudio.Win32.UI.ErrorList;
 using Provident.Foundations.VisualStudio.Xaml.Validation;
 using Provident.Foundations.WinForm.Dialogs;
 using Provident.Foundations.WinForms.CommonDialogs;
@@ -104,8 +106,10 @@ public partial class MainDialog : ProvidentDialogBase
         FileMenuClose.Click += HandleSolutionClosed;
         FileMenuExit.Click += HandleExitClicked;
 
-        OpenSolutionButton.Click += HandleOpenSolutionClicked; 
+        OpenSolutionButton.Click += HandleOpenSolutionClicked;
         BuldMenuValidateStyleId.Click += HandleValidateSolutionClicked;
+
+        ErrorList.OpenFileRequest += HandleOpenFileRequest;
     }
 
     /// <summary>
@@ -120,6 +124,8 @@ public partial class MainDialog : ProvidentDialogBase
 
         OpenSolutionButton.Click -= HandleOpenSolutionClicked;
         BuldMenuValidateStyleId.Click -= HandleValidateSolutionClicked;
+
+        ErrorList.OpenFileRequest -= HandleOpenFileRequest;
     }
 
     /// <summary>
@@ -290,6 +296,13 @@ public partial class MainDialog : ProvidentDialogBase
         SetPreLoadState();
         Close();
     }
+    private void HandleOpenFileRequest(object? sender, string fileName)
+    {
+        if (!string.IsNullOrEmpty(fileName))
+        {
+            SolutionExplorer.GotoFile(fileName);
+        }
+    }
     #endregion
 
     #region Private Methods / Functions
@@ -311,7 +324,7 @@ public partial class MainDialog : ProvidentDialogBase
         {
             if (result is not null)
             {
-                ErrorList.Results = result.CombinedResultsList;
+                ErrorList.Results = GetErrorEntries(result.CombinedResultsList);
             }
             ErrorList.Visible = true;
             SolutionExplorer.Visible = true;
@@ -328,14 +341,18 @@ public partial class MainDialog : ProvidentDialogBase
 
         DisplayStatus($"Validating Project: {_currentProject.Project.Name} ...");
         var result = await validator.ValidateXamlProjectAsync(_currentProject);
-        
+        foreach(var log in         result.Log.Entries)
+        {
+            log.ParentReference = _currentProject.Project.Name;
+
+        }
         validator.StatusUpdate -= HandleStatusUpdate;
-        
+
         ContinueInMainThread(() =>
         {
             if (result is not null)
             {
-                ErrorList.Results = [result];
+                ErrorList.Results = GetErrorEntries([result]);
             }
             ErrorList.Visible = true;
             SolutionExplorer.Visible = true;
@@ -368,6 +385,54 @@ public partial class MainDialog : ProvidentDialogBase
                 _statusDialog?.Hide();
             }
         });
+    }
+    private List<ErrorEntry> GetErrorEntries(List<XamlProjectValidationResult> validationResults)
+    {
+        List<ErrorEntry> errorList = new List<ErrorEntry>(validationResults.Count);
+
+        foreach (var result in validationResults)
+        {
+            foreach (var log in result.Log.Entries)
+            {
+                ErrorEntry entry = new ErrorEntry(
+                    GetErrorSeverity(log.Level),
+                    log.Message ?? string.Empty,
+                    log.File ?? string.Empty,
+                    log.LineNumber,
+                    log.ParentReference ?? string.Empty,
+                    log.LogDateTime);
+                entry.Tag = log;
+                errorList.Add(entry);
+            }
+        }
+        return errorList;
+    }
+
+    private ErrorSeverity GetErrorSeverity(LogLevel logLevel)
+    {
+        ErrorSeverity severity = ErrorSeverity.None;
+
+        switch (logLevel)
+        {
+            case LogLevel.Error:
+            case LogLevel.Critical:
+                severity = ErrorSeverity.Error;
+                break;
+
+            case LogLevel.Debug:
+            case LogLevel.Information:
+                severity = ErrorSeverity.Information;
+                break;
+
+            case LogLevel.Trace:
+                severity = ErrorSeverity.Log;
+                break;
+
+            case LogLevel.Warning:
+                severity = ErrorSeverity.Warning;
+                break;
+        }
+        return severity;
     }
     #endregion
 }

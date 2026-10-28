@@ -16,6 +16,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ProjectValidationErrorList.cs" />
+    <Compile Remove="ProjectValidationErrorList.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="ProjectValidationErrorList.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="App Icon Source 32 x 32.png" />
   </ItemGroup>
 

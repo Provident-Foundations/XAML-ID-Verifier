@@ -1,4 +1,5 @@
-﻿using Provident.Foundations.VisualStudio.Win32.UI.SolutionExplorer;
+﻿using Provident.Foundations.VisualStudio.Win32.UI.ErrorList;
+using Provident.Foundations.VisualStudio.Win32.UI.SolutionExplorer;
 
 namespace Provident.Xaml.Verify
 {
@@ -40,7 +41,7 @@ namespace Provident.Xaml.Verify
             BuildButton = new ToolStripButton();
             SolutionExplorer = new SolutionExplorer();
             SolutionExplorerSplitter = new Splitter();
-            ErrorList = new ProjectValidationErrorList();
+            ErrorList = new VisualStudioErrorListControl();
             ErrorSplitter = new Splitter();
             MainMenu.SuspendLayout();
             MainToolbar.SuspendLayout();
@@ -322,7 +323,7 @@ namespace Provident.Xaml.Verify
         private ToolStripButton ValidateXamlButton;
         private SolutionExplorer SolutionExplorer;
         private Splitter SolutionExplorerSplitter;
-        private ProjectValidationErrorList ErrorList;
+        private VisualStudioErrorListControl ErrorList;
         private Splitter ErrorSplitter;
     }
 }

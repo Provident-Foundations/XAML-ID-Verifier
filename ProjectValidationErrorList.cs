@@ -10,6 +10,7 @@ namespace Provident.Xaml.Verify;
 /// </summary>
 public partial class ProjectValidationErrorList : ProvidentControlBase
 {
+    public event EventHandler<string> OpenFileRequest;
     private List<XamlProjectValidationResult>? _results;
     private readonly Bitmap _errorIcon;
     private readonly Bitmap _warningIcon;
@@ -29,6 +30,16 @@ public partial class ProjectValidationErrorList : ProvidentControlBase
         SeverityFilter.SelectedIndex = 0;
     }
 
+    protected override void AssignEventHandlers()
+    {
+        ResultsGrid.CellDoubleClick += HandleCellDoubleClick;
+    }
+
+
+    protected override void RemoveEventHandlers()
+    {
+        
+    }
     /// <summary>
     /// Gets or sets the validation result displayed by the control.
     /// </summary>
@@ -88,7 +99,7 @@ public partial class ProjectValidationErrorList : ProvidentControlBase
                         severity,
                         "Validation",
                         message,
-                        string.Empty,
+                        entry.File ?? string.Empty,
                         string.Empty,
                         entry.LogDateTime.ToString("G")
                     );
@@ -229,6 +240,24 @@ public partial class ProjectValidationErrorList : ProvidentControlBase
         graphics.DrawLine(Pens.Gray, 5, 13, 9, 13);
         return bitmap;
     }
+
+    private void OnOpenFileRequest(string fileName)
+    {
+        OpenFileRequest?.Invoke(this, fileName);
+    }
+    private void HandleCellDoubleClick(object? sender, DataGridViewCellEventArgs e)
+    {
+        Cursor = Cursors.WaitCursor;
+
+        var row = ResultsGrid.Rows[e.RowIndex];
+        string? fileName = row.Cells[3].Value as string;
+        if (fileName != null)
+        {
+            OnOpenFileRequest(fileName);
+        }
+        Cursor = Cursors.Default;
+    }
+
 
     private enum DiagnosticSeverity
     {
