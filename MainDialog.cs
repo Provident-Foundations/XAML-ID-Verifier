@@ -301,6 +301,11 @@ public partial class MainDialog : ProvidentDialogBase
         if (!string.IsNullOrEmpty(fileName))
         {
             SolutionExplorer.GotoFile(fileName);
+            TextEditorWindow window = new TextEditorWindow();
+            window.MdiParent = this;
+            window.WindowState = FormWindowState.Maximized;
+            window.FileName = fileName;
+            window.Show();
         }
     }
     #endregion

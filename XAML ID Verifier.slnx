@@ -3,5 +3,6 @@
   <Project Path="../../Provident Visual Studio Framework/Provident Visual Studio Framework.csproj" />
   <Project Path="../../Provident-Foundations-Framework/src/Core/Provident Foundations Framework/Provident.Foundations/Provident.Foundations.csproj" />
   <Project Path="../../Provident-Foundations-Framework/src/Windows/ui/Provident.Foundations.WinForms.Controls/Provident.Foundations.WinForms.Controls.csproj" />
+  <Project Path="../XAML ID Verifier Proto/XAML ID Verifier Proto.csproj" Id="9aa70dae-8830-408f-9e36-77dcd9ef038c" />
   <Project Path="XAML ID Verifier.csproj" />
 </Solution>

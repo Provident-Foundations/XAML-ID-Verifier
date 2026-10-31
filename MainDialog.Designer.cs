@@ -286,6 +286,7 @@ namespace Provident.Xaml.Verify
             Controls.Add(MainMenu);
             FormRevealMode = FormRevealMode.Deferred;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            IsMdiContainer = true;
             KeyPreview = true;
             Margin = new Padding(658, 141, 658, 141);
             Name = "MainDialog";
