@@ -19,30 +19,30 @@
 	WindowStyle="None"
 	mc:Ignorable="d">
 	<Border
-		Padding="5"
-		Background="Transparent"
-		BorderBrush="#FF9184EE"
-		BorderThickness="2"
-		CornerRadius="16">
+	Padding="5"
+	Background="Transparent"
+	BorderBrush="#FF9184EE"
+	BorderThickness="2"
+	CornerRadius="16">
 		<StackPanel
-			HorizontalAlignment="Center"
-			VerticalAlignment="Center"
-			Background="#FF1C1C1C"
-			Orientation="Horizontal">
+		HorizontalAlignment="Center"
+		VerticalAlignment="Center"
+		Background="#FF1C1C1C"
+		Orientation="Horizontal">
 			<TextBlock
-				x:Name="MessageLabel"
-				Background="Transparent"
-				FontFamily="Segoe UI"
-				FontSize="16"
-				FontWeight="Normal"
-				Foreground="#FF9184EE"
-				Text="Please Wait...">
+			x:Name="MessageLabel"
+			Background="Transparent"
+			FontFamily="Segoe UI"
+			FontSize="16"
+			FontWeight="Normal"
+			Foreground="#FF9184EE"
+			Text="Please Wait...">
 				<TextBlock.Effect>
 					<DropShadowEffect
-						Direction="320"
-						Opacity="0.5"
-						ShadowDepth="5"
-						Color="#9184EE" />
+					Direction="320"
+					Opacity="0.5"
+					ShadowDepth="5"
+					Color="#9184EE" />
 				</TextBlock.Effect>
 			</TextBlock>
 		</StackPanel>
