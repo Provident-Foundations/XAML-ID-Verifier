@@ -3,22 +3,16 @@
     <Platform Name="Any CPU" />
     <Platform Name="x64" />
   </Configurations>
-  <Project Path="../../Provident Foundations Visual studio Windows Forms Controls Library/Provident Foundations Visual studio Windows Forms Controls Library.csproj" Id="ed0b1c6f-941b-4347-9115-7ce4d398b9d5">
-    <Platform Solution="*|x64" Project="x64" />
-  </Project>
   <Project Path="../../Provident Visual Studio Framework/Provident Visual Studio Framework.csproj">
     <Platform Solution="*|x64" Project="x64" />
   </Project>
   <Project Path="../../Provident-Foundations-Framework/src/Core/Provident Foundations Framework/Provident.Foundations/Provident.Foundations.csproj">
     <Platform Solution="*|x64" Project="x64" />
   </Project>
-  <Project Path="../../Provident-Foundations-Framework/src/Windows/ui/Provident.Foundations.WinForms.Controls/Provident.Foundations.WinForms.Controls.csproj">
-    <Platform Solution="*|x64" Project="x64" />
+  <Project Path="../../Provident-Foundations-Framework/src/WPF/Provident.Foundations.Wpf.Controls/Provident.Foundations.Wpf.Controls.csproj" Id="71379ab3-1e27-4ee2-a994-513de5471b7a">
+    <Platform Solution="Debug|x64" Project="x64" />
   </Project>
-  <Project Path="../XAML ID Verifier Proto/XAML ID Verifier Proto.csproj" Id="9aa70dae-8830-408f-9e36-77dcd9ef038c">
-    <Platform Solution="*|x64" Project="x64" />
-  </Project>
-  <Project Path="XAML ID Verifier.csproj">
+  <Project Path="../XAML ID Verifier Proto/Visual Studio Toolset.csproj" Id="9aa70dae-8830-408f-9e36-77dcd9ef038c">
     <Platform Solution="*|x64" Project="x64" />
   </Project>
 </Solution>
