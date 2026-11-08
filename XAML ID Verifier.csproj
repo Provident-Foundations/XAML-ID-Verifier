@@ -14,6 +14,7 @@
 	  <ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
 	  <ApplicationDefaultFont>Segoe UI, 9.75pt</ApplicationDefaultFont>
 	  <Platforms>AnyCPU;x64</Platforms>
+    <DisableMSBuildAssemblyCopyCheck>true</DisableMSBuildAssemblyCopyCheck>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,6 +36,7 @@
     <PackageReference Include="Microsoft.Build.Framework" ExcludeAssets="runtime" PrivateAssets="all" Version="18.11.0" />
     <PackageReference Include="Microsoft.Build.Utilities.Core" ExcludeAssets="runtime" PrivateAssets="all" Version="18.11.0" />
     <PackageReference Include="Microsoft.Build.Tasks.Core" ExcludeAssets="runtime" PrivateAssets="all" Version="18.11.0" />
+    <PackageReference Include="Microsoft.NET.StringTools" ExcludeAssets="runtime" PrivateAssets="all" Version="18.11.0" />
     <PackageReference Include="Microsoft.Build.Locator" PrivateAssets="all" Version="1.11.2" />
   </ItemGroup>
 
